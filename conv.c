@@ -7,19 +7,19 @@
 int usage_conv(void);
 int usage_c2f(void);
 int usage_f2c(void);
-int usage_kg2lb(void);
-int usage_lb2kg(void);
-int usage_m2in(void);
-int usage_in2m(void);
+int usage_k2l(void);
+int usage_l2k(void);
+int usage_m2i(void);
+int usage_i2m(void);
 int usage_m2f(void);
 int usage_f2m(void);
 
 int c2f(char *input_c);
 int f2c(char *input_f);
-int kg2lb(char *input_kg);
-int lb2kg(char *input_lb);
-int m2in(char *input_m);
-int in2m(char *input_in);
+int k2l(char *input_kg);
+int l2k(char *input_lb);
+int m2i(char *input_m);
+int i2m(char *input_in);
 int m2f(char *input_m);
 int f2m(char *input_f);
 
@@ -51,30 +51,30 @@ int usage_f2c(void)
 	return 1;
 }
 
-int usage_kg2lb(void)
+int usage_k2l(void)
 {
-	fprintf(stderr, "Usage: kg2lb <kilogram_value>\n");
+	fprintf(stderr, "Usage: k2l <kilogram_value>\n");
 	fprintf(stderr, "Convert Kilograms to Pounds\n");
 	return 1;
 }
 
-int usage_lb2kg(void)
+int usage_l2k(void)
 {
-	fprintf(stderr, "Usage: lb2kg <pound_value>\n");
+	fprintf(stderr, "Usage: l2k <pound_value>\n");
 	fprintf(stderr, "Convert Pounds to Kilograms\n");
 	return 1;
 }
 
-int usage_m2in(void)
+int usage_m2i(void)
 {
-	fprintf(stderr, "Usage: m2in <metre_value>\n");
+	fprintf(stderr, "Usage: m2i <metre_value>\n");
 	fprintf(stderr, "Convert Metres to Inches\n");
 	return 1;
 }
 
-int usage_in2m(void)
+int usage_i2m(void)
 {
-	fprintf(stderr, "Usage: in2m <inch_value>\n");
+	fprintf(stderr, "Usage: i2m <inch_value>\n");
 	fprintf(stderr, "Convert Inches to Metres\n");
 	return 1;
 }
@@ -132,7 +132,7 @@ int f2c(char *input_f)
 	return 0;
 }
 
-int kg2lb(char *input_kg)
+int k2l(char *input_kg)
 {
 	char *endptr;
 	double input;
@@ -151,7 +151,7 @@ int kg2lb(char *input_kg)
 	return 0;
 }
 
-int lb2kg(char *input_lb)
+int l2k(char *input_lb)
 {
 	char *endptr;
 	double input;
@@ -170,7 +170,7 @@ int lb2kg(char *input_lb)
 	return 0;
 }
 
-int m2in(char *input_m)
+int m2i(char *input_m)
 {
 	char *endptr;
 	double input;
@@ -189,7 +189,7 @@ int m2in(char *input_m)
 	return 0;
 }
 
-int in2m(char *input_in)
+int i2m(char *input_in)
 {
 	char *endptr;
 	double input;
@@ -275,36 +275,36 @@ int main(int argc, char **argv)
 		return f2c(argv[1]);
 	}
 
-	/* Check if invoked as kg2lb */
-	if (strcmp(progname, "kg2lb") == 0) {
+	/* Check if invoked as k2l */
+	if (strcmp(progname, "k2l") == 0) {
 		if (argc != 2) {
-			return usage_kg2lb();
+			return usage_k2l();
 		}
-		return kg2lb(argv[1]);
+		return k2l(argv[1]);
 	}
 
-	/* Check if invoked as lb2kg */
-	if (strcmp(progname, "lb2kg") == 0) {
+	/* Check if invoked as l2k */
+	if (strcmp(progname, "l2k") == 0) {
 		if (argc != 2) {
-			return usage_lb2kg();
+			return usage_l2k();
 		}
-		return lb2kg(argv[1]);
+		return l2k(argv[1]);
 	}
 
-	/* Check if invoked as m2in */
-	if (strcmp(progname, "m2in") == 0) {
+	/* Check if invoked as m2i */
+	if (strcmp(progname, "m2i") == 0) {
 		if (argc != 2) {
-			return usage_m2in();
+			return usage_m2i();
 		}
-		return m2in(argv[1]);
+		return m2i(argv[1]);
 	}
 
-	/* Check if invoked as in2m */
-	if (strcmp(progname, "in2m") == 0) {
+	/* Check if invoked as i2m */
+	if (strcmp(progname, "i2m") == 0) {
 		if (argc != 2) {
-			return usage_in2m();
+			return usage_i2m();
 		}
-		return in2m(argv[1]);
+		return i2m(argv[1]);
 	}
 
 	/* Check if invoked as m2f */
@@ -343,9 +343,9 @@ int main(int argc, char **argv)
 	/* Weight conversions */
 	if (argv[1][0] == '-' && argv[1][1] == 'w') {
 		if (argv[2][0] == '-' && argv[2][1] == 'k') {
-			return kg2lb(argv[3]);
+			return k2l(argv[3]);
 		} else if (argv[2][0] == '-' && argv[2][1] == 'l') {
-			return lb2kg(argv[3]);
+			return l2k(argv[3]);
 		} else {
 			usage_conv();
 			return 1;
@@ -355,9 +355,9 @@ int main(int argc, char **argv)
 	/* Distance conversions */
 	if (argv[1][0] == '-' && argv[1][1] == 'd') {
 		if (argv[2][0] == '-' && argv[2][1] == 'm') {
-			return m2in(argv[3]);
+			return m2i(argv[3]);
 		} else if (argv[2][0] == '-' && argv[2][1] == 'i') {
-			return in2m(argv[3]);
+			return i2m(argv[3]);
 		} else if (argv[2][0] == '-' && argv[2][1] == 'M') {
 			return m2f(argv[3]);
 		} else if (argv[2][0] == '-' && argv[2][1] == 'F') {

@@ -61,7 +61,7 @@ ALL_CFLAGS = $(CFLAGS) $(HARDENING) $(OPTFLAGS)
 
 TARGET = conv
 # Symlinks: temperature, weight, distance
-LINKS = c2f f2c kg2lb lb2kg m2in in2m m2f f2m
+LINKS = c2f f2c k2l l2k m2i i2m m2f f2m
 
 .PHONY: all clean install test
 
@@ -74,10 +74,10 @@ $(TARGET): conv.c
 $(LINKS): $(TARGET)
 	ln -sf $(TARGET) c2f
 	ln -sf $(TARGET) f2c
-	ln -sf $(TARGET) kg2lb
-	ln -sf $(TARGET) lb2kg
-	ln -sf $(TARGET) m2in
-	ln -sf $(TARGET) in2m
+	ln -sf $(TARGET) k2l
+	ln -sf $(TARGET) l2k
+	ln -sf $(TARGET) m2i
+	ln -sf $(TARGET) i2m
 	ln -sf $(TARGET) m2f
 	ln -sf $(TARGET) f2m
 
@@ -86,10 +86,10 @@ install: $(TARGET) $(LINKS)
 	install -m 755 $(TARGET) $(HOME)/.local/bin/
 	ln -sf $(TARGET) $(HOME)/.local/bin/c2f
 	ln -sf $(TARGET) $(HOME)/.local/bin/f2c
-	ln -sf $(TARGET) $(HOME)/.local/bin/kg2lb
-	ln -sf $(TARGET) $(HOME)/.local/bin/lb2kg
-	ln -sf $(TARGET) $(HOME)/.local/bin/m2in
-	ln -sf $(TARGET) $(HOME)/.local/bin/in2m
+	ln -sf $(TARGET) $(HOME)/.local/bin/k2l
+	ln -sf $(TARGET) $(HOME)/.local/bin/l2k
+	ln -sf $(TARGET) $(HOME)/.local/bin/m2i
+	ln -sf $(TARGET) $(HOME)/.local/bin/i2m
 	ln -sf $(TARGET) $(HOME)/.local/bin/m2f
 	ln -sf $(TARGET) $(HOME)/.local/bin/f2m
 
@@ -113,32 +113,32 @@ test: $(TARGET) $(LINKS)
 	done
 
 	@echo "Testing weight conversions..."
-	@# Test kg to lb (kg2lb and conv -w -k)
+	@# Test kg to lb (k2l and conv -w -k)
 	@for val in "1:2.20" "10:22.05" "50:110.23" "75:165.35" "100:220.46"; do \
 		input=$${val%%:*}; expected=$${val#*:}; \
-		./kg2lb $$input | grep -q "$$expected" && echo "✓ kg2lb $$input passed" || echo "✗ kg2lb $$input failed"; \
+		./k2l $$input | grep -q "$$expected" && echo "✓ k2l $$input passed" || echo "✗ k2l $$input failed"; \
 		./conv -w -k $$input | grep -q "$$expected" && echo "✓ conv -w -k $$input passed" || echo "✗ conv -w -k $$input failed"; \
 	done
 
-	@# Test lb to kg (lb2kg and conv -w -l)
+	@# Test lb to kg (l2k and conv -w -l)
 	@for val in "1:0.45" "10:4.54" "50:22.68" "75:34.02" "100:45.36"; do \
 		input=$${val%%:*}; expected=$${val#*:}; \
-		./lb2kg $$input | grep -q "$$expected" && echo "✓ lb2kg $$input passed" || echo "✗ lb2kg $$input failed"; \
+		./l2k $$input | grep -q "$$expected" && echo "✓ l2k $$input passed" || echo "✗ l2k $$input failed"; \
 		./conv -w -l $$input | grep -q "$$expected" && echo "✓ conv -w -l $$input passed" || echo "✗ conv -w -l $$input failed"; \
 	done
 
 	@echo "Testing distance conversions..."
-	@# Test m to in (m2in and conv -d -m)
+	@# Test m to in (m2i and conv -d -m)
 	@for val in "1:39.37" "2:78.74" "5:196.85" "10:393.70"; do \
 		input=$${val%%:*}; expected=$${val#*:}; \
-		./m2in $$input | grep -q "$$expected" && echo "✓ m2in $$input passed" || echo "✗ m2in $$input failed"; \
+		./m2i $$input | grep -q "$$expected" && echo "✓ m2i $$input passed" || echo "✗ m2i $$input failed"; \
 		./conv -d -m $$input | grep -q "$$expected" && echo "✓ conv -d -m $$input passed" || echo "✗ conv -d -m $$input failed"; \
 	done
 
-	@# Test in to m (in2m and conv -d -i)
+	@# Test in to m (i2m and conv -d -i)
 	@for val in "1:0.03" "10:0.25" "50:1.27" "100:2.54"; do \
 		input=$${val%%:*}; expected=$${val#*:}; \
-		./in2m $$input | grep -q "$$expected" && echo "✓ in2m $$input passed" || echo "✗ in2m $$input failed"; \
+		./i2m $$input | grep -q "$$expected" && echo "✓ i2m $$input passed" || echo "✗ i2m $$input failed"; \
 		./conv -d -i $$input | grep -q "$$expected" && echo "✓ conv -d -i $$input passed" || echo "✗ conv -d -i $$input failed"; \
 	done
 
