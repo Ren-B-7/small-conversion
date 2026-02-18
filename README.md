@@ -69,4 +69,4 @@ make clean
 ### Further notes
 
 To change the link names the MakeFile and the C code has to be adjusted.  
-Handles floating point operations and prints to 2 decimals
+Handles double floating point operations and prints to 2 decimals
