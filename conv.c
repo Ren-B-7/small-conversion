@@ -115,7 +115,7 @@ int c2f(char* input_c)
 	}
 
 	output = (input * 9.0 / 5.0) + 32.0;
-	printf("%.3f°C = %.6f°F\n", input, output);
+	printf("%.3f°C = %.3f°F\n", input, output);
 	return 0;
 }
 
@@ -134,7 +134,7 @@ int f2c(char* input_f)
 	}
 
 	output = (input - 32.0) * 5.0 / 9.0;
-	printf("%.3f°F = %.6f°C\n", input, output);
+	printf("%.3f°F = %.3f°C\n", input, output);
 	return 0;
 }
 
@@ -153,7 +153,7 @@ int k2l(char* input_kg)
 	}
 
 	output = input * 2.20462262185;
-	printf("%.3f kg = %.6f lbs\n", input, output);
+	printf("%.3f kg = %.3f lbs\n", input, output);
 	return 0;
 }
 
@@ -172,7 +172,7 @@ int l2k(char* input_lb)
 	}
 
 	output = input / 2.20462262185;
-	printf("%.3f lbs = %.6f kg\n", input, output);
+	printf("%.3f lbs = %.3f kg\n", input, output);
 	return 0;
 }
 
@@ -191,7 +191,7 @@ int m2i(char* input_m)
 	}
 
 	output = input * 39.3700787402;
-	printf("%.3f m = %.6f in\n", input, output);
+	printf("%.3f m = %.3f in\n", input, output);
 	return 0;
 }
 
@@ -210,7 +210,7 @@ int i2m(char* input_in)
 	}
 
 	output = input / 39.3700787402;
-	printf("%.3f in = %.6f m\n", input, output);
+	printf("%.3f in = %.3f m\n", input, output);
 	return 0;
 }
 
@@ -229,7 +229,7 @@ int m2f(char* input_m)
 	}
 
 	output = input * 3.28083989501;
-	printf("%.3f m = %.6f ft\n", input, output);
+	printf("%.3f m = %.3f ft\n", input, output);
 	return 0;
 }
 
@@ -248,7 +248,7 @@ int f2m(char* input_f)
 	}
 
 	output = input / 3.28083989501;
-	printf("%.3f ft = %.6f m\n", input, output);
+	printf("%.3f ft = %.3f m\n", input, output);
 	return 0;
 }
 
