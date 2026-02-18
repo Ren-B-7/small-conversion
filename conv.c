@@ -14,24 +14,30 @@ int usage_i2m(void);
 int usage_m2f(void);
 int usage_f2m(void);
 
-int c2f(char *input_c);
-int f2c(char *input_f);
-int k2l(char *input_kg);
-int l2k(char *input_lb);
-int m2i(char *input_m);
-int i2m(char *input_in);
-int m2f(char *input_m);
-int f2m(char *input_f);
+int c2f(char* input_c);
+int f2c(char* input_f);
+int k2l(char* input_kg);
+int l2k(char* input_lb);
+int m2i(char* input_m);
+int i2m(char* input_in);
+int m2f(char* input_m);
+int f2m(char* input_f);
 
 /* Usage functions */
 int usage_conv(void)
 {
-	fprintf(stderr, "Usage: conv -t -c <value>   (Temperature: Celsius to Fahrenheit)\n");
-	fprintf(stderr, "       conv -t -f <value>   (Temperature: Fahrenheit to Celsius)\n");
-	fprintf(stderr, "       conv -w -k <value>   (Weight: Kilograms to Pounds)\n");
-	fprintf(stderr, "       conv -w -l <value>   (Weight: Pounds to Kilograms)\n");
-	fprintf(stderr, "       conv -d -m <value>   (Distance: Metres to Inches)\n");
-	fprintf(stderr, "       conv -d -i <value>   (Distance: Inches to Metres)\n");
+	fprintf(stderr,
+	 "Usage: conv -t -c <value>   (Temperature: Celsius to Fahrenheit)\n");
+	fprintf(stderr,
+	 "       conv -t -f <value>   (Temperature: Fahrenheit to Celsius)\n");
+	fprintf(stderr,
+	 "       conv -w -k <value>   (Weight: Kilograms to Pounds)\n");
+	fprintf(stderr,
+	 "       conv -w -l <value>   (Weight: Pounds to Kilograms)\n");
+	fprintf(stderr,
+	 "       conv -d -m <value>   (Distance: Metres to Inches)\n");
+	fprintf(stderr,
+	 "       conv -d -i <value>   (Distance: Inches to Metres)\n");
 	fprintf(stderr, "       conv -d -M <value>   (Distance: Metres to Feet)\n");
 	fprintf(stderr, "       conv -d -F <value>   (Distance: Feet to Metres)\n");
 	return 1;
@@ -94,9 +100,9 @@ int usage_f2m(void)
 }
 
 /* Conversion functions */
-int c2f(char *input_c)
+int c2f(char* input_c)
 {
-	char *endptr;
+	char* endptr;
 	double input;
 	double output;
 	errno = 0;
@@ -109,13 +115,13 @@ int c2f(char *input_c)
 	}
 
 	output = (input * 9.0 / 5.0) + 32.0;
-	printf("%.2f°C = %.2f°F\n", input, output);
+	printf("%.3f°C = %.6f°F\n", input, output);
 	return 0;
 }
 
-int f2c(char *input_f)
+int f2c(char* input_f)
 {
-	char *endptr;
+	char* endptr;
 	double input;
 	double output;
 	errno = 0;
@@ -128,13 +134,13 @@ int f2c(char *input_f)
 	}
 
 	output = (input - 32.0) * 5.0 / 9.0;
-	printf("%.2f°F = %.2f°C\n", input, output);
+	printf("%.3f°F = %.6f°C\n", input, output);
 	return 0;
 }
 
-int k2l(char *input_kg)
+int k2l(char* input_kg)
 {
-	char *endptr;
+	char* endptr;
 	double input;
 	double output;
 	errno = 0;
@@ -146,14 +152,14 @@ int k2l(char *input_kg)
 		return 1;
 	}
 
-	output = input * 2.20462;
-	printf("%.2f kg = %.2f lbs\n", input, output);
+	output = input * 2.20462262185;
+	printf("%.3f kg = %.6f lbs\n", input, output);
 	return 0;
 }
 
-int l2k(char *input_lb)
+int l2k(char* input_lb)
 {
-	char *endptr;
+	char* endptr;
 	double input;
 	double output;
 	errno = 0;
@@ -165,14 +171,14 @@ int l2k(char *input_lb)
 		return 1;
 	}
 
-	output = input / 2.20462;
-	printf("%.2f lbs = %.2f kg\n", input, output);
+	output = input / 2.20462262185;
+	printf("%.3f lbs = %.6f kg\n", input, output);
 	return 0;
 }
 
-int m2i(char *input_m)
+int m2i(char* input_m)
 {
-	char *endptr;
+	char* endptr;
 	double input;
 	double output;
 	errno = 0;
@@ -184,14 +190,14 @@ int m2i(char *input_m)
 		return 1;
 	}
 
-	output = input * 39.3701;
-	printf("%.2f m = %.2f in\n", input, output);
+	output = input * 39.3700787402;
+	printf("%.3f m = %.6f in\n", input, output);
 	return 0;
 }
 
-int i2m(char *input_in)
+int i2m(char* input_in)
 {
-	char *endptr;
+	char* endptr;
 	double input;
 	double output;
 	errno = 0;
@@ -203,14 +209,14 @@ int i2m(char *input_in)
 		return 1;
 	}
 
-	output = input / 39.3701;
-	printf("%.2f in = %.2f m\n", input, output);
+	output = input / 39.3700787402;
+	printf("%.3f in = %.6f m\n", input, output);
 	return 0;
 }
 
-int m2f(char *input_m)
+int m2f(char* input_m)
 {
-	char *endptr;
+	char* endptr;
 	double input;
 	double output;
 	errno = 0;
@@ -222,14 +228,14 @@ int m2f(char *input_m)
 		return 1;
 	}
 
-	output = input * 3.28084;
-	printf("%.2f m = %.2f ft\n", input, output);
+	output = input * 3.28083989501;
+	printf("%.3f m = %.6f ft\n", input, output);
 	return 0;
 }
 
-int f2m(char *input_f)
+int f2m(char* input_f)
 {
-	char *endptr;
+	char* endptr;
 	double input;
 	double output;
 	errno = 0;
@@ -241,15 +247,15 @@ int f2m(char *input_f)
 		return 1;
 	}
 
-	output = input / 3.28084;
-	printf("%.2f ft = %.2f m\n", input, output);
+	output = input / 3.28083989501;
+	printf("%.3f ft = %.6f m\n", input, output);
 	return 0;
 }
 
 /* Main function */
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
-	char *progname;
+	char* progname;
 
 	/* Get the program name (basename) */
 	progname = strrchr(argv[0], '/');

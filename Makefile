@@ -97,16 +97,16 @@ install: $(TARGET) $(LINKS)
 test: $(TARGET) $(LINKS)
 	@echo "Testing temperature conversions..."
 	@# Test C to F (c2f and conv -t -c)
-	@for val in "100:212.00" "90:194.00" "80:176.00" "70:158.00" "60:140.00" "50:122.00" \
-		"40:104.00" "30:86.00" "20:68.00" "10:50.00" "0:32.00" "-100:-148.00"; do \
+	@for val in "100:212.000000" "90:194.000000" "80:176.000000" "70:158.000000" "60:140.000000" "50:122.000000" \
+		"40:104.000000" "30:86.000000" "20:68.000000" "10:50.000000" "0:32.000000" "-100:-148.000000"; do \
 		input=$${val%%:*}; expected=$${val#*:}; \
 		./c2f $$input | grep -q -- "$$expected" && echo "✓ c2f $$input passed" || echo "✗ c2f $$input failed"; \
 		./conv -t -c $$input | grep -q -- "$$expected" && echo "✓ conv -t -c $$input passed" || echo "✗ conv -t -c $$input failed"; \
 	done
 
 	@# Test F to C (f2c and conv -t -f)
-	@for val in "212:100.00" "194:90.00" "176:80.00" "158:70.00" "140:60.00" "122:50.00" \
-		"104:40.00" "86:30.00" "68:20.00" "50:10.00" "32:0.00" "-148:-100.00"; do \
+	@for val in "212:100.000000" "194:90.000000" "176:80.000000" "158:70.000000" "140:60.000000" "122:50.000000" \
+		"104:40.000000" "86:30.000000" "68:20.000000" "50:10.000000" "32:0.000000" "-148:-100.000000"; do \
 		input=$${val%%:*}; expected=$${val#*:}; \
 		./f2c $$input | grep -q -- "$$expected" && echo "✓ f2c $$input passed" || echo "✗ f2c $$input failed"; \
 		./conv -t -f $$input | grep -q -- "$$expected" && echo "✓ conv -t -f $$input passed" || echo "✗ conv -t -f $$input failed"; \
@@ -114,14 +114,14 @@ test: $(TARGET) $(LINKS)
 
 	@echo "Testing weight conversions..."
 	@# Test kg to lb (k2l and conv -w -k)
-	@for val in "1:2.20" "10:22.05" "50:110.23" "75:165.35" "100:220.46"; do \
+	@for val in "1:2.204623" "10:22.046226" "50:110.231131" "75:165.346697" "100:220.462262"; do \
 		input=$${val%%:*}; expected=$${val#*:}; \
 		./k2l $$input | grep -q "$$expected" && echo "✓ k2l $$input passed" || echo "✗ k2l $$input failed"; \
 		./conv -w -k $$input | grep -q "$$expected" && echo "✓ conv -w -k $$input passed" || echo "✗ conv -w -k $$input failed"; \
 	done
 
 	@# Test lb to kg (l2k and conv -w -l)
-	@for val in "1:0.45" "10:4.54" "50:22.68" "75:34.02" "100:45.36"; do \
+	@for val in "1:0.453592" "10:4.535924" "50:22.679618" "75:34.019428" "100:45.359237"; do \
 		input=$${val%%:*}; expected=$${val#*:}; \
 		./l2k $$input | grep -q "$$expected" && echo "✓ l2k $$input passed" || echo "✗ l2k $$input failed"; \
 		./conv -w -l $$input | grep -q "$$expected" && echo "✓ conv -w -l $$input passed" || echo "✗ conv -w -l $$input failed"; \
@@ -129,28 +129,28 @@ test: $(TARGET) $(LINKS)
 
 	@echo "Testing distance conversions..."
 	@# Test m to in (m2i and conv -d -m)
-	@for val in "1:39.37" "2:78.74" "5:196.85" "10:393.70"; do \
+	@for val in "1:39.370079" "2:78.740157" "5:196.850394" "10:393.700787"; do \
 		input=$${val%%:*}; expected=$${val#*:}; \
 		./m2i $$input | grep -q "$$expected" && echo "✓ m2i $$input passed" || echo "✗ m2i $$input failed"; \
 		./conv -d -m $$input | grep -q "$$expected" && echo "✓ conv -d -m $$input passed" || echo "✗ conv -d -m $$input failed"; \
 	done
 
 	@# Test in to m (i2m and conv -d -i)
-	@for val in "1:0.03" "10:0.25" "50:1.27" "100:2.54"; do \
+	@for val in "1:0.025400" "10:0.254000" "50:1.270000" "100:2.540000"; do \
 		input=$${val%%:*}; expected=$${val#*:}; \
 		./i2m $$input | grep -q "$$expected" && echo "✓ i2m $$input passed" || echo "✗ i2m $$input failed"; \
 		./conv -d -i $$input | grep -q "$$expected" && echo "✓ conv -d -i $$input passed" || echo "✗ conv -d -i $$input failed"; \
 	done
 
 	@# Test m to f (m2f and conv -d -M)
-	@for val in "1:3.28" "5:16.40" "10:32.81"; do \
+	@for val in "1:3.280840" "5:16.404199" "10:32.808399"; do \
 		input=$${val%%:*}; expected=$${val#*:}; \
 		./m2f $$input | grep -q "$$expected" && echo "✓ m2f $$input passed" || echo "✗ m2f $$input failed"; \
 		./conv -d -M $$input | grep -q "$$expected" && echo "✓ conv -d -M $$input passed" || echo "✗ conv -d -M $$input failed"; \
 	done
 
 	@# Test f to m (f2m and conv -d -F)
-	@for val in "1:0.30" "5:1.52" "10:3.05"; do \
+	@for val in "1:0.304800" "5:1.524000" "10:3.048000"; do \
 		input=$${val%%:*}; expected=$${val#*:}; \
 		./f2m $$input | grep -q "$$expected" && echo "✓ f2m $$input passed" || echo "✗ f2m $$input failed"; \
 		./conv -d -F $$input | grep -q "$$expected" && echo "✓ conv -d -F $$input passed" || echo "✗ conv -d -F $$input failed"; \
